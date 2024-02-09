@@ -1,0 +1,48 @@
+﻿@using VisualizeEmployeesData.Models
+@model List<EmployeeHours>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Hours</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .hours-under-100 {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Employee Work Hours</h2>
+    <table>
+        <tr>
+            <th>Employee Name</th>
+            <th>Total Hours Worked</th>
+        </tr>
+        @foreach (var employee in Model)
+        {
+            <tr class="@(employee.TotalHours < 100 ? "hours-under-100" : "")">
+                <td>@employee.EmployeeName</td>
+                <td>@Math.Round(employee.TotalHours, 2)</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
