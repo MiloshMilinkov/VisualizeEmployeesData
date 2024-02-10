@@ -33,8 +33,8 @@ namespace VisualizeEmployeesData.Services
                             EmployeeName = group.Key,
                             TotalHours = group.Sum(e => (e.EndTimeUtc - e.StarTimeUtc).TotalHours)
                         }).ToList();
+            _employeeDataChartService.GeneratePieChartImage(employeeData);
 
-            
 
             return employeeData;
         }
